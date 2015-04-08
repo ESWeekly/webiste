@@ -34,7 +34,7 @@ gulp.task('jshint', function () {
 gulp.task('html', ['styles'], function () {
   var assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
-  return gulp.src('app/*.html')
+  return gulp.src('app/**/*.html')
     .pipe(assets)
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.csso()))
@@ -68,7 +68,7 @@ gulp.task('extras', function () {
   return gulp.src([
     'app/*.*',
     'app/CNAME',
-    '!app/*.html'
+    '!app/**/*.html'
   ], {
     dot: true
   }).pipe(gulp.dest('dist'));
@@ -111,7 +111,7 @@ gulp.task('wiredep', function () {
     }))
     .pipe(gulp.dest('app/styles'));
 
-  gulp.src('app/*.html')
+  gulp.src('app/**/*.html')
     .pipe(wiredep({
       ignorePath: /^(\.\.\/)*\.\./
     }))
